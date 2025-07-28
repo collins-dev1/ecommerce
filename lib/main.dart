@@ -31,6 +31,8 @@ class CollinsHomePage extends StatefulWidget {
 }
 
 class _CollinsHomePageState extends State<CollinsHomePage> {
+  // Index for Bottom Navigation Bar
+  int selectedIndex = 0;
   // Scaffold Key
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
@@ -50,12 +52,15 @@ class _CollinsHomePageState extends State<CollinsHomePage> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            DrawerHeader(
-              decoration: BoxDecoration(color: Colors.black),
-              child: Text(
-                'Welcome to Collins App',
-                style: TextStyle(color: Colors.white, fontSize: 30),
+            UserAccountsDrawerHeader(
+              currentAccountPicture: CircleAvatar(
+                radius: 50,
+                backgroundImage: NetworkImage(
+                  'https://i.pinimg.com/1200x/54/fe/47/54fe47995a227368e77f8b2260ef44ce.jpg',
+                ),
               ),
+              accountName: Text('Collins'),
+              accountEmail: Text('hello@collins.com'),
             ),
             ListTile(title: Text('Home'), leading: Icon(Icons.home)),
             Divider(color: Colors.black, height: 0),
@@ -94,6 +99,16 @@ class _CollinsHomePageState extends State<CollinsHomePage> {
                 width: 500.0,
                 height: 500.0,
               ),
+              // Input
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextField(
+                  decoration: InputDecoration(
+                    labelText: 'Enter your name',
+                    hintText: 'Name',
+                  ),
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
@@ -121,6 +136,8 @@ class _CollinsHomePageState extends State<CollinsHomePage> {
           ),
         ),
       ),
+      resizeToAvoidBottomInset: true,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       persistentFooterButtons: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -146,6 +163,55 @@ class _CollinsHomePageState extends State<CollinsHomePage> {
           ],
         ),
       ],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: selectedIndex,
+        selectedItemColor: Colors.red, // Selected icon/label color
+        unselectedItemColor: Colors.grey[800], // Light dark for unselected
+        type: BottomNavigationBarType.fixed, // Needed for more than 3 items
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.notifications),
+            label: 'Notifications',
+          ),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+        ],
+        onTap: (int index) {
+          print("Index: $index");
+          // Update the selected index
+          setState(() {
+            selectedIndex = index;
+          });
+        },
+      ),
+      endDrawer: Drawer(
+        backgroundColor: Colors.white,
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(color: Colors.black),
+              child: Text(
+                'End Drawer Header',
+                style: TextStyle(color: Colors.white, fontSize: 30),
+              ),
+            ),
+            ListTile(title: Text('Home'), leading: Icon(Icons.home)),
+            Divider(color: Colors.black, height: 0),
+            ListTile(title: Text('About'), leading: Icon(Icons.info_sharp)),
+            Divider(color: Colors.black, height: 0),
+            ListTile(title: Text('Contact'), leading: Icon(Icons.contact_mail)),
+            Divider(color: Colors.black, height: 0),
+            ListTile(title: Text('Settings'), leading: Icon(Icons.settings)),
+            Divider(color: Colors.black, height: 0),
+            ListTile(title: Text('Logout'), leading: Icon(Icons.logout)),
+            Divider(color: Colors.black),
+            ListTile(title: Text('App Version: 1.0.0')),
+            Divider(color: Colors.black),
+          ],
+        ),
+      ),
     );
   }
 }
