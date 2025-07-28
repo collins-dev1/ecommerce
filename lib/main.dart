@@ -36,6 +36,7 @@ class _CollinsHomePageState extends State<CollinsHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       key: _scaffoldKey,
       appBar: AppBar(
         title: Text('Collins App', style: TextStyle(color: Colors.white)),
@@ -47,6 +48,7 @@ class _CollinsHomePageState extends State<CollinsHomePage> {
       drawer: Drawer(
         backgroundColor: Colors.white,
         child: ListView(
+          padding: EdgeInsets.zero,
           children: [
             DrawerHeader(
               decoration: BoxDecoration(color: Colors.black),
@@ -66,49 +68,84 @@ class _CollinsHomePageState extends State<CollinsHomePage> {
             ListTile(title: Text("Logout"), leading: Icon(Icons.logout)),
             Divider(color: Colors.black),
             ListTile(title: Text("App Version: 1.0.0")),
+            Divider(color: Colors.black),
           ],
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            Text(
-              'Welcome to Collins App',
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-            ),
-            // Image from Network
-            Image.network(
-              'https://i.pinimg.com/1200x/54/fe/47/54fe47995a227368e77f8b2260ef44ce.jpg',
-              width: 500.0,
-              height: 500.0,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                'This is a sample text This is a sample text This is a sample text This is a sample textThis is a sample text This is a sample textThis is a sample textThis is a sample text',
-                textAlign: TextAlign.center,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          print("I am Working");
+        },
+        backgroundColor: Colors.red,
+        child: Icon(Icons.share, color: Colors.white),
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Text(
+                'Welcome to Collins App',
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
-            ),
-            // Add EveladedButton
-            ElevatedButton(
-              onPressed: () {
-                print('Button Pressed');
+              // Image from Network
+              Image.network(
+                'https://i.pinimg.com/1200x/54/fe/47/54fe47995a227368e77f8b2260ef44ce.jpg',
+                width: 500.0,
+                height: 500.0,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  'This is a sample text This is a sample text This is a sample text This is a sample textThis is a sample text This is a sample textThis is a sample textThis is a sample text',
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              // Add EveladedButton
+              ElevatedButton(
+                onPressed: () {
+                  print('Button Pressed');
 
-                // Show Snackbar
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('Button Pressed'),
-                    backgroundColor: Colors.red,
-                  ),
-                );
+                  // Show Snackbar
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Button Pressed'),
+                      backgroundColor: Colors.red,
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                child: Text('Click Me', style: TextStyle(color: Colors.white)),
+              ),
+            ],
+          ),
+        ),
+      ),
+      persistentFooterButtons: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            IconButton(
+              onPressed: () {
+                print('Home Button Pressed');
               },
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
-              child: Text('Click Me', style: TextStyle(color: Colors.white)),
+              icon: Icon(Icons.home, color: Colors.black),
+            ),
+            IconButton(
+              onPressed: () {
+                print('Settings Button Pressed');
+              },
+              icon: Icon(Icons.settings, color: Colors.black),
+            ),
+            IconButton(
+              onPressed: () {
+                print('Profile Button Pressed');
+              },
+              icon: Icon(Icons.person, color: Colors.black),
             ),
           ],
         ),
-      ),
+      ],
     );
   }
 }
