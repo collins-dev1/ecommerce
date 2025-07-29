@@ -43,38 +43,7 @@ class _CollinsHomePageState extends State<CollinsHomePage> {
         systemOverlayStyle: SystemUiOverlayStyle.light,
         iconTheme: IconThemeData(color: Colors.white),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  color: Colors.red,
-                  padding: EdgeInsets.all(10),
-                  child: Center(child: Text('Hello, Collins!')),
-                ),
-
-                Container(
-                  color: Colors.blue,
-                  padding: EdgeInsets.all(10),
-                  child: Center(child: Text('Hello, Collins!')),
-                ),
-                Container(
-                  color: Colors.green,
-                  padding: EdgeInsets.all(10),
-                  child: Center(child: Text('Hello, Collins!')),
-                ),
-              ],
-            ),
-            // SizedBox(height: 20),
-            Text("This is another Column"),
-          ],
-        ),
-      ),
+      body: Text("Flutter Text")
     );
   }
 }
