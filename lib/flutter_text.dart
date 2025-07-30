@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -43,24 +44,57 @@ class _CollinsHomePageState extends State<CollinsHomePage> {
         systemOverlayStyle: SystemUiOverlayStyle.light,
         iconTheme: IconThemeData(color: Colors.white),
       ),
-      body: Container(
-        width: double.infinity,
-        height: 100,
-        padding: EdgeInsets.all(20),
-        child: Text(
-          "Welcome to Collins App hdjdj didnon DINCC ENC EO k  inrie inc eincqclki ien jeueinie fjfjjjfi ieu cuue iqblkroq nq b lrcc ;rlqrbfueb fub vur vrubk rvorbv uru rqjir roiuf  biryqobo  pbr rvro;vlblnvurbbruf vrubv rblv urbrrv ubviq",
-          textAlign: TextAlign.center,
-          textDirection: TextDirection.ltr,
-          overflow: TextOverflow.ellipsis,
-          maxLines: 2,
-          style: TextStyle(
-            fontSize: 24,
-            color: Colors.blue,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 2,
-            wordSpacing: 3,
+      body: Column(
+        children: [
+          Container(
+            width: double.infinity,
+            height: 100,
+            padding: EdgeInsets.all(20),
+            child: Text(
+              "Welcome to Collins App hdjdj didnon DINCC ENC EO k  inrie inc eincqclki ien jeueinie fjfjjjfi ieu cuue iqblkroq nq b lrcc ;rlqrbfueb fub vur vrubk rvorbv uru rqjir roiuf  biryqobo  pbr rvro;vlblnvurbbruf vrubv rblv urbrrv ubviq",
+              textAlign: TextAlign.center,
+              textDirection: TextDirection.ltr,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
+              style: TextStyle(
+                fontSize: 24,
+                color: Colors.blue,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 2,
+                wordSpacing: 3,
+              ),
+            ),
           ),
-        ),
+          RichText(
+            text: TextSpan(
+              text: "Don't have an account?",
+              style: TextStyle(color: Colors.black, fontSize: 16),
+              children: [
+                WidgetSpan(
+                  child: Icon(
+                    Icons.account_circle_rounded,
+                    size: 20,
+                    color: Colors.black,
+                  ),
+                ),
+                TextSpan(
+                  text: " Sign Up",
+                  style: TextStyle(
+                    color: Colors.blue,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      // Handle sign up tap
+                      // ignore: avoid_print
+                      print("Sign Up tapped");
+                    },
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
