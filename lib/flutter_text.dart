@@ -43,7 +43,25 @@ class _CollinsHomePageState extends State<CollinsHomePage> {
         systemOverlayStyle: SystemUiOverlayStyle.light,
         iconTheme: IconThemeData(color: Colors.white),
       ),
-      body: Text("Flutter Text")
+      body: Container(
+        width: double.infinity,
+        height: 100,
+        padding: EdgeInsets.all(20),
+        child: Text(
+          "Welcome to Collins App hdjdj didnon DINCC ENC EO k  inrie inc eincqclki ien jeueinie fjfjjjfi ieu cuue iqblkroq nq b lrcc ;rlqrbfueb fub vur vrubk rvorbv uru rqjir roiuf  biryqobo  pbr rvro;vlblnvurbbruf vrubv rblv urbrrv ubviq",
+          textAlign: TextAlign.center,
+          textDirection: TextDirection.ltr,
+          overflow: TextOverflow.ellipsis,
+          maxLines: 2,
+          style: TextStyle(
+            fontSize: 24,
+            color: Colors.blue,
+            fontWeight: FontWeight.bold,
+            letterSpacing: 2,
+            wordSpacing: 3,
+          ),
+        ),
+      ),
     );
   }
 }
