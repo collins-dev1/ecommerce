@@ -58,7 +58,7 @@ class _CollinsHomePageState extends State<CollinsHomePage> {
               spreadRadius: 2,
               blurRadius: 10,
               offset: Offset(6.0, 6.0), // changes position of shadow
-            ),
+            )
           ],
         ),
         child: Text(
