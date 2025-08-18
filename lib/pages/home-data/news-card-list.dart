@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class CollinsBlogList {
   // Method
-  Widget getCard({thumbnail, title, description, author, date}) {
+  Widget getCard({thumbnail, title, description, author, date, comment}) {
     return Card(
       margin: EdgeInsets.all(5),
       child: Padding(
@@ -74,7 +74,7 @@ class CollinsBlogList {
                         ),
                         // Comment
                         TextSpan(
-                          text: " (2 Comment)",
+                          text: " ($comment Comment)",
                           style: TextStyle(
                             fontSize: 12,
                             height: 1.2,
