@@ -1,6 +1,9 @@
 import 'package:ecommerce/pages/home-data/news-card-list.dart';
 import 'package:ecommerce/pages/single-blog.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:xml2json/xml2json.dart';
+import 'dart:convert';
 
 // create blog stateful widget
 
@@ -12,6 +15,16 @@ class CollinsBlogPage extends StatefulWidget {
 }
 
 class _CollinsBlogPageState extends State<CollinsBlogPage> {
+  // oninit
+  List<dynamic> posts = [0];
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchBlogs();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,5 +99,43 @@ class _CollinsBlogPageState extends State<CollinsBlogPage> {
         ),
       ),
     );
+  }
+
+  // get post
+
+  Future<void> fetchBlogs() async {
+    final response = await http.get(
+      Uri.parse(
+        "https://api.twingly.com/blog/search/api/v3/search?apikey=A7493A6A-5C6D-4CCF-B6B1-BC448BF0E791&q=news%20page-size:10",
+      ),
+    );
+
+    if (response.statusCode == 200) {
+      final xml = response.body;
+      final xml2json = Xml2Json();
+
+      xml2json.parse(xml);
+      var jsonString = xml2json.toParker();
+      var data = jsonDecode(jsonString);
+
+      print(data); // Debug entire JSON
+
+      var postsData = data["twinglydata"]["post"];
+
+      // Ensure posts is always a List
+      if (postsData is List) {
+        setState(() {
+          posts = postsData;
+        });
+      } else if (postsData is Map) {
+        setState(() {
+          posts = [postsData]; // wrap single post in a list
+        });
+      } else {
+        setState(() {
+          posts = [];
+        });
+      }
+    }
   }
 }
